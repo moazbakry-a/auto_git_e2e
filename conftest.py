@@ -1,6 +1,7 @@
 import pytest
 from playwright.sync_api import sync_playwright
 from login_page import LoginPage
+from checkboxes_page import CheckBoxesPage
 
 
 @pytest.fixture
@@ -15,3 +16,8 @@ def page():
 @pytest.fixture              # login_page = LoginPage(page)
 def login_page(page):
     return LoginPage(page)
+
+
+@pytest.fixture
+def checkboxes_page(page):
+    return CheckBoxesPage(page)
