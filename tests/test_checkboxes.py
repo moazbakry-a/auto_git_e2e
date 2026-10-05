@@ -1,14 +1,13 @@
 
 from playwright.sync_api import sync_playwright, expect
+from checkboxes_page import CheckboxesPage
 
 
-def test_checkboxes(page):
-    page.goto("https://the-internet.herokuapp.com/checkboxes")
-    checkbox1 = page.locator("input[type='checkbox']").nth(0)
-    checkbox2 = page.locator("input[type='checkbox']").nth(1)
-    expect(checkbox1).not_to_be_checked()
-    expect(checkbox2).to_be_checked()
-    checkbox1.check()
-    checkbox2.uncheck()
-    expect(checkbox1).to_be_checked()
-    expect(checkbox2).not_to_be_checked()
+def test_checkboxes(checkboxes_page):
+    checkboxes_page.open()
+    expect(checkboxes_page.checkbox1).not_to_be_checked()
+    expect(checkboxes_page.checkbox2).to_be_checked()
+    checkboxes_page.check_checkbox1()
+    checkboxes_page.uncheck_checkbox2()
+    expect(checkboxes_page.checkbox1).to_be_checked()
+    expect(checkboxes_page.checkbox2).not_to_be_checked()
