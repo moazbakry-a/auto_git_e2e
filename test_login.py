@@ -1,16 +1,12 @@
 from playwright.sync_api import sync_playwright, expect
 from login_page import LoginPage
+from test_data.login_data import login_cases
+import pytest
 
 
-def test_login_valid(login_page):
+@pytest.mark.parametrize("username,password,expected_message", login_cases)
+def test_login(login_page, username, password, expected_message):
     login_page.open()
-    login_page.login_form.login("tomsmith", "SuperSecretPassword!")
+    login_page.login_form.login(username, password)
     message = login_page.flash_message.get_text()
-    assert "You logged into a secure area!" in message
-    login_page.login_form.logout()
-    login_page.login_form.login("wrongusername", "SuperSecretPassword!")
-    message = login_page.flash_message.get_text()
-    assert "Your username is invalid!" in message
-    login_page.login_form.login("tomsmith", "wrongpassword")
-    message = login_page.flash_message.get_text()
-    assert "Your password is invalid!" in message
+    assert expected_message in message
