@@ -1,7 +1,9 @@
 
 # playwright automation
 
-Pytest + Playwright framework for end-to-end testing.
+
+Pytest + Playwright automation framework for web testing.
+
 
 
 ```bash
