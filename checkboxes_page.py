@@ -3,7 +3,7 @@
 from base_page import BasePage
 
 
-class CheckBoxesPage(BasePage):
+class CheckboxesPage(BasePage):
     def __init__(self, page):
         super().__init__(page)
         self.checkbox1 = self.page.locator("input[type='checkbox']").nth(0)
